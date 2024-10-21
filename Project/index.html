@@ -2,44 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Team 2 Project Demo</title>
+
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.85.2/dist/phaser-arcade-physics.min.js"></script>
-    <script src="Game/boot.js"></script>
+    <script src="lib/phaser.js"></script>
+    
+    <style>
+		body {
+			background: #2f2f2f;
+			margin: 0;
+			padding: 0;
+		}
+	</style>
 </head>
 <body>
-    <script type="module" src="Game/main.js"></script>
     <script type="text/javascript">
-        preload ()
+        class Example extends Phaser.Scene
         {
-            this.load.setBaseURL('https://cdn.phaserfiles.com/v385');
-            this.load.image('loading', 'Assets/loading.png');
-            this.load.script('GameBoot', 'Game/Boot.js');
-            this.load.script('GameDoor', 'Game/Door.js');
-            this.load.script('Game', 'Game/Game.js');
-            this.load.script('GameMain', 'Game/main.js');
-            this.load.script('GameMainMenu', 'Game/MainMenu.js');
-            this.load.script('GamePreloader', 'Game/Preloader.js');
-        }
+            preload ()
+            {
+                this.load.setBaseURL('https://cdn.phaserfiles.com/v385'); // or use https://labs.phaser.io
+                this.load.image('loading', 'assets/loading.png');
+            }
 
-        create ()
-        {
-            this.add.image(200, 200, 'loading');
-            this.scene.start('GamePreloader');
-        }
-
-        const config = {
-        type: Phaser.AUTO,
-        width: 800,
-        height: 600,
-        scene: Example,
-        physics: {
-            default: 'arcade',
-            arcade: {
-                gravity: { y: 200 }
+            create ()
+            {
+                this.add.image(200, 200, 'loading');
+                this.scene.start('GamePreloader');
             }
         }
-    };
+        const config = {
+            type: Phaser.AUTO,
+            width: 1280,
+            height: 720,
+            scene: Example,
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    gravity: { y: 0 }
+                }
+            },
+            scale: {
+                mode: Phaser.Scale.FIT,
+                autoCenter: Phaser.Scale.CENTER_BOTH
+            }
+        };
+        const game = new Phaser.Game(config);
 
-    const game = new Phaser.Game(config);
+        config.scene.add("GamePreloader", Preloader);
     </script>
 </body>
 </html>
