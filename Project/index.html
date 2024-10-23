@@ -8,52 +8,27 @@
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/phaser@3.86.0/dist/phaser-arcade-physics.min.js"></script> --> <!-- One way to load phaser's content -->
     <script src="lib/phaser.js"></script> <!-- another way to load phaser's content -->
-    <script src="scripts/Preloader.js"></script>
+    <script src="scripts/Preloader.js" defer></script>
+    <script src="scripts/Scenes/GameLevel.js" defer></script>
+    <script src="scripts/main.js" defer></script>
     
     <style>
 		body {
-			background: #2f2f2f;
-			margin: 0;
-			padding: 0;
-		}
+            margin: 0;
+            overflow: hidden;
+            background-color: #2f2f2f;
+        }
+
+        #game-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 	</style>
 </head>
 <body>
-    <div id="phaser-example"></div>
-    
-    <script type="text/javascript">
-        class Boot extends Phaser.Scene
-        {
-            preload ()
-            {
-                //this.load.setBaseURL('https://cdn.phaserfiles.com/v385'); // or use https://labs.phaser.io
-                this.load.image('loading', 'assets/loading.png');
-            }
-
-            create ()
-            {
-                this.add.image(200, 200, 'loading');
-                this.scene.start('Preloader');
-            }
-        }
-        const config = {
-            type: Phaser.AUTO,
-            width: 1280,
-            height: 720,
-            scene: [Boot, Preloader],
-            physics: {
-                default: 'arcade',
-                arcade: {
-                    gravity: { y: 0 }
-                }
-            },
-            scale: {
-                mode: Phaser.Scale.FIT,
-                autoCenter: Phaser.Scale.CENTER_BOTH
-            }
-        };
-        const game = new Phaser.Game(config);
-
-    </script>
+    <div id="game-container"></div>
 </body>
 </html>
