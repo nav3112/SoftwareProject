@@ -9,6 +9,12 @@ class CrashScene extends Phaser.Scene {
         this.load.image('rocket', 'assets/rocket.png');
         this.load.image('stone', 'assets/stone2.png');
         this.load.audio('popSound', 'assets/pop-sound.mp3');
+        this.load.image('startButton', 'assets/startButton.png');
+        this.load.image('background2', 'assets/bg2.jpg');
+        this.load.image('crashedRocket', 'assets/crashedrocket.png');
+        this.load.audio('backgroundMusic', 'assets/background.mp3');
+        this.load.audio('explosionSound', 'assets/spaceexplosion.mp3');
+        this.load.spritesheet('astronaut', 'assets/astronaut.png', { frameWidth: 50, frameHeight: 50 });
     }
 
     create() {
@@ -38,7 +44,7 @@ class CrashScene extends Phaser.Scene {
             backgroundColor: '#333'
         }).setOrigin(0.5)
             .setInteractive()
-            .on('pointerdown', () => { this.popSound.play(), this.scene.start('IntroScene') } )
+            .on('pointerdown', () => { this.popSound.play(), this.scene.start('GameScene1') } )
             .setStyle({
                 borderRadius: '10px',
                 shadow: { offsetX: 2, offsetY: 2, color: '#333', blur: 2, stroke: true, fill: true }
